@@ -14,6 +14,7 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String reverse(String string) {
+		String JavaBatch = "Revature";
 		
 		return "";
 	}
