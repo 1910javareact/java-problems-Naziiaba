@@ -22,13 +22,11 @@ public class EvaluationService {
 		char[] charArray = string.toCharArray();
 		
 		for (i = 0; i < (charArray.length/2); i++) {
-			f(string == null || string.isEmpty()) {
+			charArray[i] = charArray(charArray.length - i - 1)];
+			charArray[(charArray.length - i - 1)] = temp;
 		}
-			return string;
-		}
-		String reverseaString = newString(charArray);
+		String reverseaString = new String(charArray);
 		
-		}
 		return reverseaString;
 	}
 
@@ -292,7 +290,19 @@ public class EvaluationService {
 	 * @return
 	 */
 	public List<Long> calculatePrimeFactorsOf(long l) {
-		// TODO Write an implementation for this method declaration
+		List<Long> primeFactors = newArrayList<>();
+		
+		while(l != 1) {
+			
+			long i = 2;
+			
+			while(l % i != 0 ) {
+				i = i +1L;
+			}
+			
+			l = l/i;
+			primeFactors.add(i);
+		}
 		return null;
 	}
 
