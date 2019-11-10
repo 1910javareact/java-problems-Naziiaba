@@ -13,10 +13,23 @@ public class EvaluationService {
 	 * @param string
 	 * @return
 	 */
-	public String reverse(String string) {
-		String JavaBatch = "Revature";
+	
+	
+
+	public static String reverse(String string) {
+		int i;
+		char temp;
+		char[] charArray = string.toCharArray();
 		
-		return "";
+		for (i = 0; i < (charArray.length/2); i++) {
+			f(string == null || string.isEmpty()) {
+		}
+			return string;
+		}
+		String reverseaString = newString(charArray);
+		
+		}
+		return reverseaString;
 	}
 
 	/**
