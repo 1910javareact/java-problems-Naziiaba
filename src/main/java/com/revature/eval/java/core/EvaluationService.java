@@ -15,20 +15,20 @@ public class EvaluationService {
 	 */
 	
 	
-
 	public static String reverse(String string) {
 		int i;
 		char temp;
 		char[] charArray = string.toCharArray();
 		
 		for (i = 0; i < (charArray.length/2); i++) {
-			charArray[i] = charArray(charArray.length - i - 1)];
+			charArray[i] = charArray(charArray.length - i - 1);
 			charArray[(charArray.length - i - 1)] = temp;
 		}
-		String reverseaString = new String(charArray);
+		String reverseString = new String(charArray);
 		
-		return reverseaString;
+		return reverseString;
 	}
+
 
 	/**
 	 * 2. Convert a phrase to its acronym. Techies love their TLA (Three Letter
@@ -275,8 +275,24 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isArmstrongNumber(int input) {
-		// TODO Write an implementation for this method declaration
-		return false;
+		List<Integer> digits = new ArrayList();
+		Integer temp = new Integer(input);
+		while(temp != 0) {
+			digits.add(temp % 10);
+			temp = ((temp - temp % 10)/10);
+			
+		}
+		
+		int newInt = 0;
+		for(Integer i : digits) {
+			newInt += (int) Math.pow(i, digits.size());
+		}
+		if(newInt == input) {
+			return true;
+		} else {
+		
+			return false;
+		}
 	}
 
 	/**
