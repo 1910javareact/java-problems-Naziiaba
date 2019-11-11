@@ -1,6 +1,8 @@
 package com.revature.eval.java.core;
 
 import java.time.temporal.Temporal;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -38,11 +40,31 @@ public class EvaluationService {
 	 * @param phrase
 	 * @return
 	 */
-	public String acronym(String phrase) {
-		// TODO Write an implementation for this method declaration
-		return null;
-	}
 
+	public String acronym(String phrase) {
+		
+		StringBuilder acronym = new StringBuilder();
+		 
+		boolean addNextLetter = true;
+		
+		
+		for (int i=0; i<phrase.length(); i++) {
+			
+			if (!addNextLetter) {
+				if (!Character.isAlphabetic(phrase.charAt(i)) && phrase.charAt(i) != '\'') {
+					addNextLetter = true;
+				}
+			}
+			
+			else if (Character.isAlphabetic(phrase.charAt(i))) {
+				acronym.append(Character.toUpperCase(phrase.charAt(i)));
+				addNextLetter = false;
+			}
+		}
+		
+		return acronym.toString();
+	}
+	
 	/**
 	 * 3. Determine if a triangle is equilateral, isosceles, or scalene. An
 	 * equilateral triangle has all three sides the same length. An isosceles
@@ -98,16 +120,28 @@ public class EvaluationService {
 		}
 
 		public boolean isIsosceles() {
-			// TODO Write an implementation for this method declaration
+			
+			if ((sideOne == sideTwo) && (sideOne != sideThree)) {
+				return true;
+			} else if (sideOne == sideThree && sideOne != sideTwo) {
+				return true;
+			} else if (sideTwo == sideThree && sideTwo != sideOne) {
+				return true;
+			}
 			return false;
 		}
+		
 
 		public boolean isScalene() {
-			// TODO Write an implementation for this method declaration
-			return false;
+		
+		
+		return (sideOne != sideTwo) 
+				&& (sideTwo != sideThree) 
+				&& (sideThree != sideOne);
 		}
 
 	}
+
 
 	/**
 	 * 4. Given a word, compute the scrabble score for that word.
@@ -174,11 +208,21 @@ public class EvaluationService {
 	 * @param string
 	 * @return
 	 */
-	public Map<String, Integer> wordCount(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
-	}
 
+	
+	public Map<String, Integer> wordCount(String strings) {
+		Map<String, Integer> map = new HashMap<>();
+
+
+		for (String s:strings){
+		if(map.containsKey(s)){
+		map.put(s, (map.get(s) + 1));
+		}
+		else
+		map.put(s,1);
+		}
+		return map;
+		}
 	/**
 	 * 7. Implement a binary search algorithm.
 	 * 
@@ -275,7 +319,7 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isArmstrongNumber(int input) {
-		List<Integer> digits = new ArrayList();
+		List<Integer> digits = new ArrayList<Integer>();
 		Integer temp = new Integer(input);
 		while(temp != 0) {
 			digits.add(temp % 10);
@@ -306,7 +350,7 @@ public class EvaluationService {
 	 * @return
 	 */
 	public List<Long> calculatePrimeFactorsOf(long l) {
-		List<Long> primeFactors = newArrayList<>();
+		List<Long> primeFactors = new ArrayList<>();
 		
 		while(l != 1) {
 			
@@ -376,8 +420,20 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int calculateNthPrime(int i) {
+		int primes = 0;
+		int currentNumber = 0;
+		
+		if (i <= 0) {
+			throw new IllegalArgumentException("Java is awesome language: " + i);
+	} while (primes < i) {
+		currentNumber++;
+		
+		if (isPrime(currentNumber)) {
+			primes++;
+		}
+	}
 		// TODO Write an implementation for this method declaration
-		return 0;
+		return (int) currentNumber;
 	}
 
 	/**
@@ -470,9 +526,21 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isPangram(String string) {
-		// TODO Write an implementation for this method declaration
-		return false;
+		HashSet<Character> letters = new HashSet<>();
+		
+		
+		for (int i = 0; i < string.length(); i++) {
+			
+			if (Character.isAlphabetic(Character.toLowerCase(string.charAt(i)))) {
+				letters.add(string.charAt(i));
+			}
+		}
+		
+		
+		return letters.size() == 26;
 	}
+	
+	
 
 	/**
 	 * 17. Calculate the moment when someone has lived for 10^9 seconds.
